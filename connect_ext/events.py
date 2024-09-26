@@ -26,6 +26,12 @@ from connect.eaas.core.responses import (
     },
 ])
 class ExtensionForTestEventsApplication(EventsApplicationBase):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        import pendulum
+        self.logger.warning("**** PENDULUM VERSION: %s", pendulum.__version__)
+
     @event(
         'asset_cancel_request_processing',
         statuses=[
